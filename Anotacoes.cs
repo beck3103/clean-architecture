@@ -280,4 +280,54 @@
 			//Centraliza a lógica de acesso à dados facilitando manutenção
 		
 
+//Padrão MVC 
+
+	//O Padrão MVC fornece uma maneira de separar as Funcionalidades
+	//e Responsabilidades envolvidas com a manutenção e apresentação
+	//dos dados de uma aplicação usando 3 componentes:
+
+		//M => Model: Representa os dados a serem tratados e não inclui
+		//detalhes de implementação
+
+		//V => View: Representa o componente de interface com o usuário(UI)
+		//e está vínculado ao Model
+
+		//C => Controller: Fornece uma mecanismo para o usuário interagir
+		//com o sistema definindo como a interface do usuário vai
+		//reagir a ação do usuário. É responsável por trocar e interpretar
+		//mensagens entre a View e o Model.
+
+	//Padrão MVC => Padrões de comunicação
+		//Permitidos:
+			//-Os usuários podem interagir com uma View
+			//-Views podem interagir com Controllers
+			//-Controllers podem interagir com Views
+			//-Controllers podem se comunicar com outros Controllers
+			//-Controller podem se comunicar com o Model
+
+		//Não permitidos:
+			//-Os usuários não podem interagir diretamente com o Model
+			//-Views não podem interagir diretamente com outras Views
+			//-Views não podem interagir diretamente com o Model
+			//-Models não podem interagir com outros Models
+
+	//Padrão MVC => Benefícios:
+
+		//A View e o Model são desacoplados ou dissociados. Isso significa
+		//que você pode ter muitas Views associadas com um determinado Model
+
+		//A dissociação View-Controller permite que você altere a forma
+		//como a aplicação responde à entrada do usuário sem alterar
+		//o modo de exibição, permitindo que a interface do usuário(view)
+		//seja alterada sem alterar a maneira como o aplicativo responde à
+		//entrada do usuário.
+
+		//A separação das responsabilidades permite que diferentes membros
+		//da equipe possam seconcetrar em uma parte da aplicação que melhor se 
+		//se alinha com suas respectivas habilidades.
+
+		//Como o padrão MVC gerencia múltiplos visualizadores usando o
+		//mesmo modelo, é fácil manter, testar e atualizar mais de um sistema.
+
+ 
 
