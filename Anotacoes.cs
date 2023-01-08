@@ -189,5 +189,95 @@
 		//Contâiner IoC => Container de Injeção de dependência é um framework que permite
 		//fazer a injeção de dependência de forma automática nos componentes.
 
+//Padrão Repository
+
+	//Um repository é essencialmente uma coleção de "objetos de domínio" em memória, e,
+	//com base nisso o padrão Repository permite desacoplar o modelo de domínio
+	//do código de acesso à dados.
+
+	//Ao utilizar o padrão Repository, você pode realizar a persistência e a separação
+	//de interesses em seu código de acesso à dados visto que ele encapsula
+	//a lógica necessária para persistir os objetos do seu domínio
+	//na sua fonte de dados.
+
+	//Em uma implementação padrão, podemos começar definindo uma 
+	//interface que atuará como a nossa fachada de acesso aos dados
+	//e a seguir definir a implementação na classe concreta.
+
+	//Podemos implementar os seguintes tipos de repositório:
+		// - Repositório Genérico
+		// - Repositório Específico
+
+	//E podemos realziar uma implementação síncrona ou assícrona(Task, async/await)
+
+	//Padrão Repository - Implementação
+
+		//1 - Criar uma interface ou classe abstrata e definir
+		//o contrato com os métodos do repositório.
+
+		//2 - Criar a classe concreta que implementa a interface
+
+		//Repositório Genérico:
+
+		//Genérico
+		public interface IRepository<T> where T : class
+		{
+			void Add();
+			void Remove();
+			void Get();
+			T GetId();
+			IEnumerable<T> GetAll();
+		}
+
+		//Classe implementando
+		public class Repository<T> : IRepository<T> where T : class
+		{
+			...
+		}
+
+		//Repositório Específico:
+
+		//Específico 
+		public interface IProductRepository<Produto>
+		{
+			void Add();
+			void Remove();
+			void Get();
+			Produto GetId();
+			IEnumerable<Produto> GetAll();
+		}
+
+		//Classe implementando
+		public class ProdutoRepository<Produto> : IProductRepository<Produto>
+		{
+			...
+		}
+
+		//Genérico ou específico?
+
+			//Um repositório genérico pode ser usado por qualquer entidade
+			//de camada de negócios e com isso economizamos código.
+
+			//Ocorre que cada entidade decamada de domínio pode possuir suas
+			//particularidades distintas de outras entidades e isso pode
+			//inviabilizar o uso de um repositório genérico
+
+			//Assim para decidir é preciso fazer um análise prévia do modelo
+			//de domínio e das particularidades de cada entidade.
+
+		//Benefícios do Padrão Repository 
+
+			//Minimiza  alógica de consultas na sua aplicação evitando
+			//consultas esparramadas pelo seu código.
+
+			//Encapsula a lógica das consultas em um repositório.
+
+			//Desacopla a sua aplicação dos frameworks de persistência
+			//como o Entity Framwork Core
+
+			//Facilita a realização de testes de unidade em sua aplicação
+
+			//Centraliza a lógica de acesso à dados facilitando manutenção
+		
 
 
