@@ -330,4 +330,128 @@
 		//mesmo modelo, é fácil manter, testar e atualizar mais de um sistema.
 
  
+//Padrão CQRS
 
+	//O acrônimo CQRS significa Command Query Responsability Segregation ou, numa tradução livre
+	//Segregação de Responsibilidade de Consulta e de Comando, e é utilizado para aplicar
+	//modelos diferentes para operações de leitura e gravação. 
+
+	//O CQRS é um padrão de projeto arquitetural para separar os "processos de leitura" e "gravação"
+	//da sua aplicação. As alterações de dados são realizados via Commands e a leitura de dados é
+	//realizada via Queries.
+
+		//Commands => Representa tudo que altera o estado de uma entidade(insert,delete e update)
+		//Queries => Não alteram o estado da entidade(select)
+
+		//A utilização do CQRS é indicada para um cenário onde existe uma ALTA DEMANDA de
+		//consumo de dados com operações de leitura e escrita feitas de forma BEM INTENSA.
+
+	//O CQRS separa leituras e gravações em modelos diferentes, usando comandos para atualizar
+	//dados e consultas para ler dados.
+
+		//Os Comandos devem ser baseados em tarefas, e não centrados em dados;
+		
+		//Os Comandos podem ser colocados em uma fila para processamento assíncrono,
+		//em vez de serem processados de forma síncrona. 
+
+		//As Consultas nunca modificam o banco de dados. Uma consulta retorna um DTO que não encapsula
+		//nenhum conhecimento do domínio.
+
+	//Para obter um maior isolamento, você pode separar fisicamente os dados de leitura dos dados
+	//de gravação. Nesse caso, o banco de dados pode usar seu próprio esquema de dados otimizado
+	//para consultas.
+
+	//Padrão CQRS - Benefícios
+
+		//Escala independente => O CQRS permite que as cargas de trabalho de leitura e gravação
+		//sejam escalonadas independentemente, o que pode resultar em menos conteções de bloqueio.
+
+		//Esquemas de dados otimizados => O lado de leitura pode usar um esquema otimizado para
+		//consultas, enquanto o lado de gravação usa um esquema otimizado para atualizações.
+
+		//Segurança => É mais fácil garantir que apenas as entidades de domínio corretas estejam
+		//executando gravações nos dados.
+
+		//Separação de responsabilidades => A segregação dos dados de leitura e gravação pode resultar
+		//em modelos mais flexíveis e fáceis de manter. A maior parte da lógica de negócios complexa
+		//entra no modelo de gravação. O modelo de leitura pode ser relativamente simples.
+
+		//Consultas mais simples => Ao armazenar uma view no banco de dados, o aplicativo pode evitar joins
+		//complexos durante a consulta, tornando as consultas mais simples.
+
+	//Padrão CQRS - Implementação na ASP.NET Core
+
+		//- Usa a biblioteca MediatR(usa o padrão Mediator)
+		//- E o pacote MediatR.Extensions.Microsoft.DependencyInjection
+
+//Arquitetura Monolítica
+
+	//A arquitetura monolítica é um sistema único, não dividido, que roda em um único processo, ou seja,
+	//é uma aplicação na qual diferentes componentes estão ligados a um único 
+	//programa dentro de uma única plataforma.
+
+	//Na arquitetura monolítica o núcleo do comportamento da aplicação é executado em seu próprio processo
+	//e a aplicação inteira é impantada como uma única unidade.
+
+	//Um aplicativo criado com essa arquitetura pode escalar verticalmente aumentando o poder das
+	//máquinas em que a aplicação roda ou horizontalmente, com a adição de instâncias atrás de
+	//um Load Balancer.
+
+	//Arquiterura Monolítica => 
+		//Vantagens: 
+			
+			//Mais simples de desenvolver.
+
+			//Simples de fazer o deploy(pacote único).
+
+			//Exige uma equipe menor.
+
+		//Desvantagens:
+
+			//Manutenção se torna cada vez maior de acordo com o tamanho da aplicação,
+			//o código será cada vez mais difícil de entender e o desafio de fazer 
+			//alterações rápidas e subir para o servidor só cresce.
+
+			//Para cada alteração feita, é necessário realizar um novo deploy de toda a aplicação.
+
+			//Fragilidade em uma linha de código que subiu errada pode quebrar todo o sistema
+			//e ele ficar totalmente inoperante.
+
+//Arquitetura em Camadas
+
+	//A arquitetura em camadas visa a criação de Aplicativos Modulares, de forma que cada camada possui
+	//uma responsabilidade e onde a camada superior se comunica com a camada inferior e assim por diante,
+	//fazendo  com que uma camada seja dependente apenas da camada imediatamente inferior.
+
+	//Podemos assim dividir um sistema em uma, duas, três ou N camadas dependendo do objetivo e da
+	//complexidade do sistema.
+
+	//Dependendo do contexto as camadas podem ser lógicas(Layers) ou físicas(Tiers).  
+
+	//Arquitetura em Camadas =>
+		//Vantagens:
+
+			//Com a organização do código em camadas, podemos reutilizar a funcionalidade de baixo nível
+			//em todo o aplicativo.
+
+			//Com uma arquitetura em camadas os aplicativos podem impor restrições sobre quais camadas 
+			//podem se comunicar com outras camadas.
+
+			//Essa arquitetura ajuda a atingir o encapsulamento.
+
+			//Quando uma camada é alterada ou substituída, apenas as camadas que interagem
+			//com ela serão afetadas.
+
+			//As camada tornam muito mais fácil substituir uma funcionalidade dentro do projeto.
+
+		//Desvantagens:
+
+			//As dependências em tempo de compilação são executadas de cima para baixo.
+
+			//Assim a camada de negócios(BLL) depende dos detalhes de implementação da camada
+			//de acesso à dados.
+
+			//Testar a lógica de negócio nesta arquitetura é difícil pois exige um banco de dados de teste.
+
+		//Para resolver esse problema podemos usar a inversão de dependência em uma arquitetura mais robusta
+		//como a Arquitetura Cebola(Onion Architecture)
