@@ -35,7 +35,7 @@ namespace CleanArchMvc.Domain.Tests
         }
 
         [Fact(DisplayName = "Create product with image too long")]
-        public void CreateCategory_TooLongImageValue_DomainExceptionShortName()
+        public void CreateCategory_TooLongImageValue_DomainExceptionTooLongImage()
         {
             Action action = () => new Product("test", "test description", 10m, 10, @"test imageeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
                                                                                     eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
@@ -66,6 +66,24 @@ namespace CleanArchMvc.Domain.Tests
             action.Should()
                 .Throw<Validation.DomainExceptionValidation>()
                 .WithMessage("Invalid Name. Name is required");
+        }
+
+        [Fact(DisplayName = "Create product with null image")]
+        public void CreateCategory_NullImageValue_NoDomainException()
+        {
+            Action action = () => new Product("test", "test description", 10m, 10, null);
+            action.Should()
+                .NotThrow<Validation.DomainExceptionValidation>();
+
+        }
+
+        [Fact(DisplayName = "Create product with null image")]
+        public void CreateCategory_NullImageValue_DomainExceptionNullImage()
+        {
+            Action action = () => new Product("test", "test description", 10m, 10, null);
+            action.Should()
+                .NotThrow<NullReferenceException>();
+                
         }
     }
 }
