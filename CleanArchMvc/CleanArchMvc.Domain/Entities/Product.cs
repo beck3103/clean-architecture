@@ -22,7 +22,7 @@ namespace CleanArchMvc.Domain.Entities
 
         public Product(int id, string name, string description, decimal price, int stock, string image)
         {
-            DomainExceptionValidation.When(Id < 0, "Invalid Id value");
+            DomainExceptionValidation.When(id < 0, "Invalid Id value");
             Id = id;
             ValidateDomain(name, description, price, stock, image);
         }
@@ -59,6 +59,8 @@ namespace CleanArchMvc.Domain.Entities
 
             DomainExceptionValidation.When(image.Length > 250,
                 "Invalid image name, too long, maximum 250 characters");
+
+            
 
             Name = name;
             Description = description;
