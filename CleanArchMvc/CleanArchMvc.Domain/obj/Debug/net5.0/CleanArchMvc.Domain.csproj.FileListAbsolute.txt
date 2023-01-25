@@ -9,3 +9,4 @@ C:\Users\119101\Desktop\Curso\clean-architecture\CleanArchMvc\CleanArchMvc.Domai
 C:\Users\119101\Desktop\Curso\clean-architecture\CleanArchMvc\CleanArchMvc.Domain\obj\Debug\net5.0\CleanArchMvc.Domain.dll
 C:\Users\119101\Desktop\Curso\clean-architecture\CleanArchMvc\CleanArchMvc.Domain\obj\Debug\net5.0\ref\CleanArchMvc.Domain.dll
 C:\Users\119101\Desktop\Curso\clean-architecture\CleanArchMvc\CleanArchMvc.Domain\obj\Debug\net5.0\CleanArchMvc.Domain.pdb
+C:\Users\119101\Desktop\Curso\clean-architecture\CleanArchMvc\CleanArchMvc.Domain\obj\Debug\net5.0\CleanArchMvc.Domain.csproj.AssemblyReference.cache
